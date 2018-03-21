@@ -1,0 +1,103 @@
+:root {
+  --clock-radius: 200px;
+  --clock-diameter: 400px;
+  --pointer-hour: calc(var(--clock-radius) / 1.7);
+  --pointer-minute: calc(var(--clock-radius) / 1.4);
+  --pointer-second: calc(var(--clock-radius) / 1.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+#bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(180deg, #606060 0%, #bebebb, 70%, #fff 90%);
+  opacity: 0.74
+}
+
+.container {
+  position: relative;
+  width: 450px;
+  height: 450px;
+  margin: 0 auto;
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-content: center;
+}
+
+.clock-frame {
+  position: relative;
+  margin: auto;
+  background-color: rgba(40,40,55,1);
+  width: var(--clock-diameter);
+  height: var(--clock-diameter);
+  border-radius: var(--clock-radius);
+  border: 4px solid #dadada;
+  box-shadow: 2px 4px 6px rgba(0,0,0,0.2), 3px 1px 5px rgba(0,0,0,0.15);
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.clock-center {
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+.clock-center:after {
+  content: '';
+  position: absolute;
+  --diameter: 25px;
+  transform: translate(-50%, -50%);
+  width: var(--diameter);
+  height: var(--diameter);
+  background: linear-gradient(160deg, #dadada 0%, #e9e9e9 30%, #d4d4d4 70%, #b9b9b9 100%);
+}
+
+.pointer {
+    position: absolute;
+    width: 5px;
+    background-color: #f0b733;
+    opacity: 1;
+    transform-origin: bottom center;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.pointer.hour {
+  --width: 8px;
+  top: calc(var(--pointer-hour) * -1);
+  left: calc((var(--width) * -1) / 2);
+  width: var(--width);
+  height: var(--pointer-hour);
+}
+
+.pointer.minute {
+  --width: 6px;
+  left: calc((var(--width) * -1) / 2);
+  top: calc(var(--pointer-minute) * -1);
+  width: var(--width);
+  height: var(--pointer-minute);
+}
+
+.pointer.second {
+  --width: 2px;
+  left: calc((var(--width) * -1) / 2);
+  top: calc(var(--pointer-second) * -1);
+  width: var(--width);
+  height: var(--pointer-second);
+}
