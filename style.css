@@ -1,9 +1,9 @@
 :root {
   --clock-radius: 200px;
   --clock-diameter: 400px;
-  --pointer-hour: calc(var(--clock-radius) / 1.7);
-  --pointer-minute: calc(var(--clock-radius) / 1.4);
-  --pointer-second: calc(var(--clock-radius) / 1.2);
+  --pointer-hour: calc(var(--clock-radius) / 2.1);
+  --pointer-minute: calc(var(--clock-radius) / 1.55);
+  --pointer-second: calc(var(--clock-radius) / 1.3);
 }
 
 * {
@@ -22,7 +22,7 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  background: linear-gradient(180deg, #606060 0%, #bebebb, 70%, #fff 90%);
+  background: linear-gradient(14deg, #606060 0%, #bebebb, 70%, #fff 90%);
   opacity: 0.74
 }
 
@@ -40,6 +40,7 @@ body {
 
 .clock-frame {
   position: relative;
+  z-index: 1;
   margin: auto;
   background-color: rgba(40,40,55,1);
   width: var(--clock-diameter);
@@ -51,10 +52,12 @@ body {
   grid-template-columns: 1fr;
   align-items: center;
   justify-items: center;
+  overflow: hidden;
 }
 
 .clock-center {
   position: relative;
+  z-index: 3;
   width: 0;
   height: 0;
 }
@@ -62,15 +65,41 @@ body {
 .clock-center:after {
   content: '';
   position: absolute;
-  --diameter: 25px;
+  z-index: 10;
+  --diameter: 10px;
   transform: translate(-50%, -50%);
   width: var(--diameter);
   height: var(--diameter);
-  background: linear-gradient(160deg, #dadada 0%, #e9e9e9 30%, #d4d4d4 70%, #b9b9b9 100%);
+  background: linear-gradient(-17deg, #dadada 0%, #e9e9e9 30%, #d4d4d4 70%, #b9b9b9 100%);
+}
+
+.clock-dial-area {
+    --width: 10px;
+    position: absolute;
+    top: calc(var(--clock-radius) * -1);
+    left: calc((var(--width) * -1) / 2);
+    width: var(--width);
+    height: var(--pointer-hour);
+    z-index: 2;
+    height: var(--clock-radius);
+    background:linear-gradient(to top, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 75%, rgba(255,255,255,0.2) 90%);
+    opacity: 1;
+    transform-origin: bottom center;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+.clock-dial-area > div {
+  width: 10px;
+  height: 20px;
+  background-color: #2e85b6;
+  border-radius: 4px;
 }
 
 .pointer {
     position: absolute;
+    z-index: 5;
     width: 5px;
     background-color: #f0b733;
     opacity: 1;

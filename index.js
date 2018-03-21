@@ -1,12 +1,26 @@
-
-
 class App {
   constructor() {
-    this.tick = () => {
-      this.updateDate()
-      this.renderPointers()
+    this.initialRender();
+    this.interval = setInterval(this.tick.bind(this), 50);
+  }
+
+  initialRender() {
+    const center = document.querySelector('.clock-center');
+    for (let i=0;i<12;i++) {
+      const area = document.createElement('div');
+      area.classList.add('clock-dial-area');
+      const deg = i * 30;
+      area.style.transform = `rotate(${deg}deg)`;
+      if (i%3 === 0) {
+        area.appendChild(document.createElement('div'));
+      }
+      center.appendChild(area);
     }
-    this.interval = setInterval(this.tick , 50)
+  }
+
+  tick() {
+    this.updateDate();
+    this.renderPointers();
   }
 
   updateDate() {
