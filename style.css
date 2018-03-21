@@ -1,6 +1,6 @@
 :root {
-  --clock-radius: 200px;
-  --clock-diameter: 400px;
+  --clock-radius: 180px;
+  --clock-diameter: 360px;
   --pointer-hour: calc(var(--clock-radius) / 2.1);
   --pointer-minute: calc(var(--clock-radius) / 1.55);
   --pointer-second: calc(var(--clock-radius) / 1.3);
@@ -28,8 +28,8 @@ body {
 
 .container {
   position: relative;
-  width: 450px;
-  height: 450px;
+  width: var(--clock-diameter);
+  height: var(--clock-diameter);
   margin: 0 auto;
   margin-top: 30px;
   display: grid;
